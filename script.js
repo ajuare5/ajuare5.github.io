@@ -250,7 +250,7 @@ function initWorldMap() {
   // Force Leaflet to recalculate container size after layout settles
   setTimeout(() => map.invalidateSize(), 250);
 
-  fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+  fetch('assets/countries-110m.json')
     .then(r => r.json())
     .then(world => {
       const countries = topojson.feature(world, world.objects.countries);
