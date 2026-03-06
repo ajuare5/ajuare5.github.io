@@ -78,7 +78,7 @@ const projects = [
     title: "Connect-4 AI",
     description: "Generated 1.4M+ board positions via MCTS (2,000 simulations per move) to train AlphaZero-style CNN and Transformer models. Transformer achieved 77% top-1 move accuracy using 18x fewer parameters than the CNN. Deployed via Anvil, Docker, and AWS Lightsail.",
     category: "ai",
-    categoryLabel: "AI & Engineering",
+    categoryLabel: "AI",
     tags: ["Python", "PyTorch", "MCTS", "Docker", "AWS"],
     github: "https://github.com/ajuare5/connect-4",
     team: null
