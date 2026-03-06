@@ -887,8 +887,8 @@ img { max-width: 100%; display: block; }
     padding-bottom: 1rem;
   }
   .hero-stat:last-child { border-bottom: none; }
-  .pit-lane { bottom: 0.5rem; }
-  .hero { padding-bottom: 8rem; }
+  .pit-lane { bottom: 1rem; }
+  .hero { padding-bottom: 9rem; }
   .nav-links { display: none; }
   .nav-toggle { display: flex; }
   .nav-links.open {
