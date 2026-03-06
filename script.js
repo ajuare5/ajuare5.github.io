@@ -227,16 +227,16 @@ function initWorldMap() {
 
   const map = L.map('world-map', {
     center: [20, 10],
-    zoom: 1.5,
+    zoom: 1,
     scrollWheelZoom: false,
     zoomControl: false,
-    dragging: false,
+    dragging: true,
     doubleClickZoom: false,
     touchZoom: false,
     keyboard: false,
     boxZoom: false,
     minZoom: 1,
-    maxZoom: 1.5,
+    maxZoom: 1,
   });
 
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
@@ -246,6 +246,9 @@ function initWorldMap() {
   }).addTo(map);
 
   const foundIds = new Set();
+
+  // Force Leaflet to recalculate container size after layout settles
+  setTimeout(() => map.invalidateSize(), 250);
 
   fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
     .then(r => r.json())
