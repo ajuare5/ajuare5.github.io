@@ -164,6 +164,7 @@ img { max-width: 100%; display: block; }
   justify-content: center;
   padding: 7rem 2rem 4rem;
   position: relative;
+  overflow: hidden;
 }
 .hero-content {
   max-width: var(--max-width);
@@ -214,6 +215,66 @@ img { max-width: 100%; display: block; }
   flex-shrink: 0;
 }
 .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+/* ==========================================
+   PIT LANE ANIMATION
+   ========================================== */
+.pit-lane {
+  position: absolute;
+  bottom: 4.5rem;
+  left: 0;
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+.f1-car {
+  font-size: 6rem;
+  position: absolute;
+  left: 2rem;
+  line-height: 1;
+  display: inline-block;
+  transform: translateX(0) scaleX(-1);
+  z-index: 1;
+}
+#f1Car2 { left: calc(2rem - 130px); top:  4px; }
+#f1Car3 { left: calc(2rem - 275px); top: -6px; }
+#f1Car4 { left: calc(2rem - 400px); top:  8px; }
+#f1Car5 { left: calc(2rem - 540px); top: -3px; }
+.soccer-ball {
+  font-size: 2.2rem;
+  position: absolute;
+  left: calc(2rem + 145px);
+  line-height: 1;
+  display: inline-block;
+  z-index: 2;
+}
+.f1-car.driving {
+  animation: carDrive 2s linear forwards;
+}
+.soccer-ball.launched {
+  animation: ballLaunch 1.4s linear forwards;
+}
+#f1Car2.driving { animation: carDrive 2.5s linear 0.3s forwards; }
+#f1Car3.driving { animation: carDrive 1.7s linear 0.4s forwards; }
+#f1Car4.driving { animation: carDrive 3.0s linear 0.5s forwards; }
+#f1Car5.driving { animation: carDrive 2.2s linear 0.6s forwards; }
+
+@keyframes carDrive {
+  0%   { transform: translateX(0) scaleX(-1); }
+  100% { transform: translateX(155vw) scaleX(-1); }
+}
+@keyframes ballLaunch {
+  0%   { transform: translateX(0)     translateY(0)     rotate(0deg); }
+  15%  { transform: translateX(17vw)  translateY(-70px) rotate(108deg); }
+  25%  { transform: translateX(29vw)  translateY(0px)   rotate(180deg); }
+  40%  { transform: translateX(46vw)  translateY(-45px) rotate(288deg); }
+  50%  { transform: translateX(58vw)  translateY(0px)   rotate(360deg); }
+  65%  { transform: translateX(75vw)  translateY(-20px) rotate(468deg); }
+  75%  { transform: translateX(86vw)  translateY(0px)   rotate(540deg); }
+  100% { transform: translateX(115vw) translateY(0px)   rotate(720deg); }
+}
+
 .hero-scroll-hint {
   position: absolute;
   bottom: 2rem;
@@ -313,16 +374,56 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--gray-200);
   border-top: 3px solid transparent;
   border-radius: var(--radius);
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  transition: all var(--ease);
+  display: grid;
+  grid-template-rows: auto 0fr;
+  cursor: pointer;
+  transition: grid-template-rows 0.35s ease, box-shadow var(--ease), border-color var(--ease), transform var(--ease);
 }
-.project-card:hover {
+.project-card:hover,
+.project-card.revealed {
+  grid-template-rows: auto 1fr;
   box-shadow: var(--shadow-lg);
   border-top-color: var(--red);
   transform: translateY(-3px);
+}
+.project-front {
+  padding: 1.5rem 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.project-hint {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-300);
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: color var(--ease);
+}
+.project-hint svg {
+  transition: transform var(--ease);
+}
+.project-card:hover .project-hint,
+.project-card.revealed .project-hint { color: var(--red); }
+.project-card:hover .project-hint svg,
+.project-card.revealed .project-hint svg { transform: rotate(180deg); }
+.project-details {
+  overflow: hidden;
+  min-height: 0;
+}
+.project-details-inner {
+  padding: 0 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-top: 1px solid var(--gray-200);
+  padding-top: 1rem;
+  margin: 0 1.5rem;
+  margin-bottom: 1.5rem;
 }
 .project-category {
   font-size: 0.68rem;
