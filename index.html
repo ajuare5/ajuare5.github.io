@@ -18,6 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
 
@@ -34,6 +35,7 @@
         <a href="#projects">Projects</a>
         <a href="#experience">Experience</a>
         <a href="assets/resume.pdf" target="_blank" class="nav-resume">Resume</a>
+        <a href="assets/cv.pdf" target="_blank" class="nav-resume nav-cv">CV</a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -48,12 +50,13 @@
         <h1 class="hero-name">Arturo Juarez Jr.</h1>
         <h2 class="hero-title">Data Scientist &amp; ML Engineer</h2>
         <p class="hero-bio">
-          Building ML models, optimization systems, and data pipelines — interning at Cisco, studying at UT Austin.
+          Building ML models, optimization systems, and data pipelines. Interning at Cisco, studying at UT Austin.
         </p>
         <div class="hero-links">
           <a href="https://www.linkedin.com/in/arturo-juarez-jr/" target="_blank" class="btn btn-primary">LinkedIn</a>
           <a href="https://github.com/ajuare5" target="_blank" class="btn btn-secondary">GitHub</a>
           <a href="assets/resume.pdf" target="_blank" class="btn btn-outline">Resume</a>
+          <a href="assets/cv.pdf" target="_blank" class="btn btn-outline">CV</a>
         </div>
         <div class="hero-stats">
           <div class="hero-stat">
@@ -74,8 +77,10 @@
           </div>
         </div>
       </div>
-      <div class="hero-photo">
-        <img src="assets/photo.jpg" alt="Arturo Juarez Jr." />
+      <div class="hero-photo-wrapper">
+        <div class="hero-photo">
+          <img src="assets/photo.jpg" alt="Arturo Juarez Jr." />
+        </div>
       </div>
     </div>
     <div class="pit-lane">
@@ -223,8 +228,14 @@
           <span class="beyond-icon">✈️</span>
           <h3>Travel</h3>
           <p>I've explored most of Western Europe and love immersing in new cultures wherever I land.</p>
+          <div id="world-map"></div>
+          <div class="map-legend">
+            <span class="legend-visited"><span class="legend-dot legend-dot-visited"></span>Visited</span>
+            <span class="legend-bucket"><span class="legend-dot legend-dot-bucket"></span>Bucket List</span>
+          </div>
           <div class="destinations-label">Countries visited</div>
           <div class="destinations-list">
+            <span>🇺🇸 United States</span>
             <span>🇲🇽 Mexico</span>
             <span>🇨🇦 Canada</span>
             <span>🇬🇧 England</span>
@@ -244,6 +255,11 @@
             <span>🇨🇭 Switzerland</span>
             <span>🇦🇺 Australia</span>
             <span>🇨🇱 Chile</span>
+            <span>🇨🇷 Costa Rica</span>
+            <span>🇵🇪 Peru</span>
+            <span>🇨🇴 Colombia</span>
+            <span>🇦🇼 Aruba</span>
+            <span>🇰🇷 South Korea</span>
           </div>
         </div>
 
@@ -265,7 +281,7 @@
         <div class="skill-group">
           <h3>Machine Learning</h3>
           <div class="skill-tags">
-            <span>scikit-learn</span><span>TensorFlow</span><span>XGBoost</span><span>Random Forests</span><span>BART</span>
+            <span>scikit-learn</span><span>TensorFlow</span><span>PyTorch</span><span>XGBoost</span><span>Random Forests</span><span>BART</span><span>Time Series</span>
           </div>
         </div>
         <div class="skill-group">
@@ -277,7 +293,7 @@
         <div class="skill-group">
           <h3>Cloud &amp; Infrastructure</h3>
           <div class="skill-tags">
-            <span>Snowflake</span><span>Kubernetes</span><span>Docker</span><span>Prometheus</span><span>Grafana</span>
+            <span>Snowflake</span><span>AWS</span><span>Kubernetes</span><span>Docker</span><span>Prometheus</span><span>Grafana</span>
           </div>
         </div>
         <div class="skill-group">
@@ -370,6 +386,16 @@
     </div>
   </section>
 
+  <!-- Closing Quote -->
+  <section class="closing-section">
+    <div class="closing-overlay"></div>
+    <div class="closing-content">
+      <p class="closing-quote">"Único e irrepetible"</p>
+      <p class="closing-translation">One of a kind, never to be repeated</p>
+      <p class="closing-attribution">— Mom</p>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
@@ -383,6 +409,8 @@
           <a href="https://github.com/ajuare5" target="_blank">GitHub</a>
           <a href="mailto:aj37739@my.utexas.edu">UT Email</a>
           <a href="mailto:arturojuarez08@gmail.com">Gmail</a>
+          <a href="assets/resume.pdf" target="_blank">Resume</a>
+          <a href="assets/cv.pdf" target="_blank">CV</a>
         </div>
       </div>
       <div class="footer-bottom">
@@ -391,6 +419,8 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/topojson-client@3/dist/topojson-client.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

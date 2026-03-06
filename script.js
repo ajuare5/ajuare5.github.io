@@ -182,6 +182,117 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // ==========================================
+// WORLD MAP
+// ==========================================
+function initWorldMap() {
+  // ISO 3166-1 numeric codes
+  const visited = [
+    { name: 'United States', id: 840 },
+    { name: 'Mexico',        id: 484 },
+    { name: 'Canada',        id: 124 },
+    { name: 'UK',            id: 826 },
+    { name: 'Spain',         id: 724 },
+    { name: 'France',        id: 250 },
+    { name: 'Italy',         id: 380 },
+    { name: 'Netherlands',   id: 528 },
+    { name: 'Germany',       id: 276 },
+    { name: 'Portugal',      id: 620 },
+    { name: 'Greece',        id: 300 },
+    { name: 'Bahamas',       id:  44 },
+  ];
+
+  const bucketList = [
+    { name: 'Japan',       id: 392 },
+    { name: 'Brazil',      id:  76 },
+    { name: 'Switzerland', id: 756 },
+    { name: 'Australia',   id:  36 },
+    { name: 'Chile',       id: 152 },
+    { name: 'Costa Rica',  id: 188 },
+    { name: 'Peru',        id: 604 },
+    { name: 'Colombia',    id: 170 },
+    { name: 'Aruba',       id: 533 },
+    { name: 'South Korea', id: 410 },
+  ];
+
+  const visitedIds  = new Set(visited.map(c => c.id));
+  const bucketIds   = new Set(bucketList.map(c => c.id));
+  const nameMap     = {};
+  [...visited, ...bucketList].forEach(c => { nameMap[c.id] = c.name; });
+
+  // Fallback markers for small islands not in 110m dataset
+  const fallbacks = {
+     44: { name: 'Bahamas',  coords: [25.03, -77.40], type: 'visited'  },
+    533: { name: 'Aruba',    coords: [12.52, -69.97], type: 'bucket'   },
+  };
+
+  const map = L.map('world-map', {
+    center: [20, 10],
+    zoom: 1.5,
+    scrollWheelZoom: false,
+    zoomControl: false,
+    dragging: false,
+    doubleClickZoom: false,
+    touchZoom: false,
+    keyboard: false,
+    boxZoom: false,
+    minZoom: 1,
+    maxZoom: 1.5,
+  });
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 6,
+  }).addTo(map);
+
+  const foundIds = new Set();
+
+  fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+    .then(r => r.json())
+    .then(world => {
+      const countries = topojson.feature(world, world.objects.countries);
+
+      L.geoJSON(countries, {
+        style: feature => {
+          const id = +feature.id;
+          if (visitedIds.has(id)) {
+            foundIds.add(id);
+            return { fillColor: '#BF5700', color: '#ff9a45', weight: 1, fillOpacity: 0.75, opacity: 1 };
+          }
+          if (bucketIds.has(id)) {
+            foundIds.add(id);
+            return { fillColor: '#3b82f6', color: '#93c5fd', weight: 1, fillOpacity: 0.65, opacity: 1 };
+          }
+          return { fillColor: 'transparent', color: 'rgba(255,255,255,0.06)', weight: 0.5, fillOpacity: 0, opacity: 0.4 };
+        },
+        onEachFeature: (feature, layer) => {
+          const id = +feature.id;
+          if (visitedIds.has(id) || bucketIds.has(id)) {
+            const label = nameMap[id] || '';
+            layer.bindTooltip(label, { className: 'map-tooltip', direction: 'top', sticky: true });
+            layer.on('mouseover', function() { this.setStyle({ fillOpacity: 0.95 }); });
+            layer.on('mouseout',  function() { this.setStyle({ fillOpacity: visitedIds.has(id) ? 0.75 : 0.65 }); });
+          }
+        }
+      }).addTo(map);
+
+      // Add circle markers for islands missing from 110m dataset
+      Object.entries(fallbacks).forEach(([id, { name, coords, type }]) => {
+        if (!foundIds.has(+id)) {
+          const isVisited = type === 'visited';
+          L.circleMarker(coords, {
+            radius: 6,
+            fillColor: isVisited ? '#BF5700' : '#3b82f6',
+            color:     isVisited ? '#ff9a45' : '#93c5fd',
+            weight: 2, opacity: 1, fillOpacity: 0.8,
+          }).addTo(map).bindTooltip(name, { className: 'map-tooltip', direction: 'top', offset: [0, -4] });
+        }
+      });
+    });
+}
+
+// ==========================================
 // INIT
 // ==========================================
 renderProjects();
+initWorldMap();
