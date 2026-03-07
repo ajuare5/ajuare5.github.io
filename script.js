@@ -3,6 +3,16 @@
 // ==========================================
 const projects = [
   {
+    title: "Connect-4 AI",
+    description: "Generated 1.4M+ board positions via MCTS (2,000 simulations per move) to train AlphaZero-style CNN and Transformer models. Transformer achieved 77% top-1 move accuracy using 18x fewer parameters than the CNN. Deployed via Anvil, Docker, and AWS Lightsail.",
+    category: "ai",
+    categoryLabel: "AI",
+    tags: ["Python", "PyTorch", "MCTS", "Docker", "AWS"],
+    github: "https://github.com/ajuare5/connect-4",
+    demo: "https://youtu.be/h-xMCMP6j2I",
+    team: null
+  },
+  {
     title: "Medical Insurance Analytics",
     description: "Three-problem ML framework tackling claim cost prediction, customer segmentation, and volume forecasting on a 100K-row insurance dataset. Applied Two-Part Model, Tweedie Regression, and Gradient Boosting to outperform standard baselines.",
     category: "ml",
@@ -83,16 +93,6 @@ const projects = [
     github: "https://github.com/ajuare5/coffee-data-lakehouse",
     team: "Team of 3"
   },
-  {
-    title: "Connect-4 AI",
-    description: "Generated 1.4M+ board positions via MCTS (2,000 simulations per move) to train AlphaZero-style CNN and Transformer models. Transformer achieved 77% top-1 move accuracy using 18x fewer parameters than the CNN. Deployed via Anvil, Docker, and AWS Lightsail.",
-    category: "ai",
-    categoryLabel: "AI",
-    tags: ["Python", "PyTorch", "MCTS", "Docker", "AWS"],
-    github: "https://github.com/ajuare5/connect-4",
-    demo: "https://youtu.be/h-xMCMP6j2I",
-    team: null
-  }
 ];
 
 // ==========================================
