@@ -742,7 +742,7 @@ img { max-width: 100%; display: block; }
    BEYOND THE DATA
    ========================================== */
 .beyond-section {
-  background: #0f0805;
+  background: #1a0f07;
 }
 .beyond-title {
   color: var(--white);
@@ -905,7 +905,7 @@ img { max-width: 100%; display: block; }
    BG-DARK (Experience / Education section)
    ========================================== */
 .bg-dark {
-  background: linear-gradient(160deg, #110a04 0%, #0f0805 100%);
+  background: #0a0a0a;
 }
 .bg-dark .section-title {
   color: var(--white);
