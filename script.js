@@ -12,6 +12,15 @@ const projects = [
     team: "Team of 5"
   },
   {
+    title: "Beer Recommender System",
+    description: "Scraped 8,750 reviews across 250 beers from BeerAdvocate using Selenium, then built an attribute-based recommender using POS tagging, lift ratios, and VADER sentiment. Compared Bag-of-Words, spaCy embeddings, and custom Word2Vec, finding BOW best for domain-specific flavor matching. Validated that high ratings do not predict flavor preferences.",
+    category: "ml",
+    categoryLabel: "Machine Learning & NLP",
+    tags: ["Python", "NLP", "Selenium", "Word2Vec", "spaCy"],
+    github: "https://github.com/ajuare5/beer-recommender-system",
+    team: "Team of 6"
+  },
+  {
     title: "Sephora Skincare Analytics",
     description: "NLP pipeline analyzing 87K+ Sephora customer reviews using a custom 40+ attribute lexicon with negation detection. Hybrid sentiment scoring weighted by review helpfulness, with brand-level lift analysis by skin type.",
     category: "ml",
