@@ -911,57 +911,21 @@ img { max-width: 100%; display: block; }
   color: rgba(255,255,255,0.62);
 }
 
+
 /* ==========================================
-   CLOSING QUOTE
+   CLOSING BANNER
    ========================================== */
-.closing-section {
-  position: relative;
-  min-height: 420px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: url('assets/sports-bg.png') center center / cover no-repeat fixed;
-  overflow: hidden;
+.closing-banner {
+  height: 280px;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
+    url('assets/sports-bg.png') center center / cover no-repeat fixed;
 }
 @media (max-width: 1024px) {
-  .closing-section {
-    background-image: url('assets/sports-bg.png');
+  .closing-banner {
     background-attachment: scroll;
+    height: 200px;
   }
-}
-.closing-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 100%);
-  z-index: 1;
-}
-.closing-content { z-index: 2; }
-.closing-content {
-  position: relative;
-  text-align: center;
-  padding: 2rem;
-}
-.closing-quote {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 800;
-  color: var(--white);
-  letter-spacing: -1px;
-  font-style: italic;
-  margin-bottom: 0.75rem;
-}
-.closing-translation {
-  font-size: 1rem;
-  color: rgba(255,255,255,0.5);
-  font-style: italic;
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.02em;
-}
-.closing-attribution {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--red);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
 }
 
 /* ==========================================
