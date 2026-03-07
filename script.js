@@ -90,6 +90,7 @@ const projects = [
     categoryLabel: "AI",
     tags: ["Python", "PyTorch", "MCTS", "Docker", "AWS"],
     github: "https://github.com/ajuare5/connect-4",
+    demo: "https://youtu.be/h-xMCMP6j2I",
     team: null
   }
 ];
@@ -126,13 +127,21 @@ function renderProjects(filter = 'all') {
             ${project.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}
           </div>
           ${project.team ? `<div class="project-team">${project.team}</div>` : ''}
-          <a href="${project.github}" target="_blank" class="project-link">
-            View on GitHub
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </a>
+          <div class="project-links-row">
+            <a href="${project.github}" target="_blank" class="project-link">
+              View on GitHub
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            ${project.demo ? `<a href="${project.demo}" target="_blank" class="project-link project-link-demo">
+              Watch Demo
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </a>` : ''}
+          </div>
         </div>
       </div>
     `;
